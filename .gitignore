@@ -1,0 +1,51 @@
+# ===========================
+# Python
+# ===========================
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+venv/
+.venv/
+env/
+
+# Environment Variables
+.env
+.env.*
+
+# Local Data
+backend/qdrant_db/
+backend/uploads/
+
+# Python Cache
+.pytest_cache/
+.mypy_cache/
+
+# ===========================
+# React
+# ===========================
+
+frontend/node_modules/
+frontend/dist/
+
+# ===========================
+# IDE
+# ===========================
+
+.vscode/
+.idea/
+
+# ===========================
+# OS
+# ===========================
+
+.DS_Store
+Thumbs.db
+
+# ===========================
+# Logs
+# ===========================
+
+*.log

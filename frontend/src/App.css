@@ -1,0 +1,525 @@
+/* ===========================
+   Theme Variables
+=========================== */
+
+:root{
+
+    --bg:#111827;
+    --surface:#1f2937;
+    --surface-hover:#374151;
+
+    --text:#ffffff;
+    --text-secondary:#d1d5db;
+
+    --border:#4b5563;
+
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+
+    --danger:#dc2626;
+    --danger-hover:#b91c1c;
+
+    --radius:12px;
+
+    --shadow:0 10px 30px rgba(0,0,0,.25);
+
+}
+
+.light{
+
+    --bg:#f3f4f6;
+    --surface:#ffffff;
+    --surface-hover:#e5e7eb;
+
+    --text:#111827;
+    --text-secondary:#4b5563;
+
+    --border:#d1d5db;
+
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+/* ===========================
+   Global
+=========================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+body{
+
+    background:var(--bg);
+    color:var(--text);
+
+    transition:.25s;
+
+}
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+/* ===========================
+   Layout
+=========================== */
+
+.app{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+/* ===========================
+   Sidebar
+=========================== */
+
+.sidebar{
+
+    width:320px;
+
+    background:var(--surface);
+
+    border-right:1px solid var(--border);
+
+    padding:25px;
+
+    overflow-y:auto;
+
+}
+
+.documents h2{
+
+    margin-bottom:20px;
+
+}
+
+.document-card{
+
+    background:var(--surface-hover);
+
+    padding:15px;
+
+    border-radius:var(--radius);
+
+    margin-bottom:15px;
+
+    transition:.2s;
+
+    box-shadow:var(--shadow);
+
+}
+
+.document-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.document-card h4{
+
+    margin-bottom:8px;
+
+    word-break:break-word;
+
+}
+
+.document-card p{
+
+    color:var(--text-secondary);
+
+    font-size:14px;
+
+}
+
+.document-card button{
+
+    width:100%;
+
+    margin-top:12px;
+
+    background:var(--danger);
+
+    color:white;
+
+    padding:10px;
+
+    border-radius:8px;
+
+}
+
+.document-card button:hover{
+
+    background:var(--danger-hover);
+
+}
+
+/* ===========================
+   Main
+=========================== */
+
+.main-content{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+.main-content h1{
+
+    margin-bottom:30px;
+
+}
+
+/* ===========================
+   Upload
+=========================== */
+
+button{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+}
+
+button:hover{
+
+    background:var(--primary-hover);
+
+}
+
+input{
+
+    margin-top:20px;
+
+}
+
+/* ===========================
+   Chat
+=========================== */
+
+.chat{
+
+    width:100%;
+
+    max-width:950px;
+
+}
+
+.messages{
+
+    background:var(--surface);
+
+    min-height:420px;
+
+    max-height:650px;
+
+    overflow-y:auto;
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.user-msg{
+
+    margin-left:auto;
+
+    margin-bottom:18px;
+
+    width:fit-content;
+
+    max-width:80%;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:14px;
+
+}
+
+.ai-msg{
+
+    margin-bottom:18px;
+
+    width:fit-content;
+
+    max-width:80%;
+
+    background:var(--surface-hover);
+
+    padding:15px;
+
+    border-radius:14px;
+
+}
+
+.input-area{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.input-area input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+}
+
+/* ===========================
+   Message
+=========================== */
+
+.message-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+
+.copy-btn{
+
+    background:var(--primary);
+
+    padding:7px 14px;
+
+    border-radius:8px;
+
+    color:white;
+
+}
+
+.copy-btn:hover{
+
+    background:var(--primary-hover);
+
+}
+
+.message-content{
+
+    line-height:1.8;
+
+}
+
+.message-content h1,
+.message-content h2,
+.message-content h3{
+
+    margin:15px 0 10px;
+
+}
+
+.message-content ul,
+.message-content ol{
+
+    margin-left:22px;
+
+}
+
+.message-content li{
+
+    margin:6px 0;
+
+}
+
+.message-content code{
+
+    background:#0f172a;
+
+    color:#38bdf8;
+
+    padding:3px 6px;
+
+    border-radius:5px;
+
+    font-family:Consolas, monospace;
+
+}
+
+.message-content pre{
+
+    background:#0f172a;
+
+    padding:15px;
+
+    overflow:auto;
+
+    border-radius:10px;
+
+    margin:15px 0;
+
+}
+
+.message-content pre code{
+
+    background:none;
+
+    padding:0;
+
+}
+
+/* ===========================
+   Sources
+=========================== */
+
+.sources{
+
+    margin-top:18px;
+
+}
+
+.source-card{
+
+    background:var(--surface);
+
+    border-left:4px solid var(--primary);
+
+    padding:12px;
+
+    margin-top:10px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.source-card:hover{
+
+    transform:translateX(5px);
+
+    background:var(--surface-hover);
+
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--border);
+
+    border-radius:8px;
+
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.header{
+
+    width:100%;
+
+    max-width:950px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.subtitle{
+
+    margin-top:8px;
+
+    color:var(--text-secondary);
+
+}
+
+.theme-btn{
+
+    background:var(--surface-hover);
+
+    color:var(--text);
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+}
+
+.theme-btn:hover{
+
+    transform:translateY(-2px);
+
+}
