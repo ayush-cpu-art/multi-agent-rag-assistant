@@ -15,7 +15,6 @@ class Retriever:
     def __init__(self):
 
         self.collection_name = "documents"
-
         self.client = client
 
         self.model = TextEmbedding(
@@ -30,14 +29,10 @@ class Retriever:
             re.IGNORECASE
         )
 
-        document_ids = []
-
-        for number in matches:
-            document_ids.append(
-                f"assignment-{number}"
-            )
-
-        return list(set(document_ids))
+        return list({
+            f"assignment-{number}"
+            for number in matches
+        })
 
     def retrieve(self, query, limit=8):
 
@@ -46,9 +41,13 @@ class Retriever:
         print("=" * 60)
         print("Query :", query)
 
-        query_vector = list(
-            self.model.embed([query])
-        )[0].tolist()
+        embedding = next(self.model.embed([query]))
+
+        query_vector = (
+            embedding.tolist()
+            if hasattr(embedding, "tolist")
+            else list(embedding)
+        )
 
         document_ids = self.extract_document_ids(query)
 
@@ -62,20 +61,13 @@ class Retriever:
                 print("•", doc)
 
             search_filter = Filter(
-
                 should=[
-
                     FieldCondition(
                         key="document_id",
-                        match=MatchValue(
-                            value=doc
-                        )
+                        match=MatchValue(value=doc)
                     )
-
                     for doc in document_ids
-
                 ]
-
             )
 
         else:
@@ -83,21 +75,13 @@ class Retriever:
             print("\n🌍 Searching all uploaded documents")
 
         results = self.client.query_points(
-
             collection_name=self.collection_name,
-
             query=query_vector,
-
             query_filter=search_filter,
-
             limit=limit
-
         )
 
-        if (
-            not hasattr(results, "points")
-            or len(results.points) == 0
-        ):
+        if not getattr(results, "points", None):
 
             print("❌ No matching chunks found.")
 
@@ -113,30 +97,11 @@ class Retriever:
 
             documents.append({
 
-                "text": payload.get(
-                    "text",
-                    ""
-                ),
-
-                "document": payload.get(
-                    "document",
-                    "Unknown"
-                ),
-
-                "document_id": payload.get(
-                    "document_id",
-                    ""
-                ),
-
-                "chunk_id": payload.get(
-                    "chunk_id",
-                    0
-                ),
-
-                "score": round(
-                    point.score,
-                    4
-                )
+                "text": payload.get("text", ""),
+                "document": payload.get("document", "Unknown"),
+                "document_id": payload.get("document_id", ""),
+                "chunk_id": payload.get("chunk_id", 0),
+                "score": round(point.score, 4)
 
             })
 
