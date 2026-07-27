@@ -72,13 +72,18 @@ class VectorStore:
             zip(chunks, embeddings)
         ):
 
+            if hasattr(embedding, "tolist"):
+                vector = embedding.tolist()
+            else:
+                vector = list(embedding)
+
             points.append(
 
                 PointStruct(
 
                     id=str(uuid.uuid4()),
 
-                    vector=embedding.tolist(),
+                    vector=vector,
 
                     payload={
 
@@ -193,13 +198,7 @@ class VectorStore:
                 "Unknown"
             )
 
-            if name not in documents:
-
-                documents[name] = 1
-
-            else:
-
-                documents[name] += 1
+            documents[name] = documents.get(name, 0) + 1
 
         return documents
 

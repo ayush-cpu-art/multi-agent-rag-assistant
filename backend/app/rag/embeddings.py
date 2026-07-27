@@ -1,26 +1,25 @@
+from fastembed import TextEmbedding
+
+
 class EmbeddingGenerator:
 
     def __init__(self):
 
-        from sentence_transformers import SentenceTransformer
-
-        self.model = SentenceTransformer(
-            "sentence-transformers/all-MiniLM-L6-v2"
+        self.model = TextEmbedding(
+            model_name="BAAI/bge-small-en-v1.5"
         )
 
     def generate_embeddings(self, chunks):
 
-        embeddings = self.model.encode(
-            chunks,
-            convert_to_numpy=True,
-            normalize_embeddings=True
+        embeddings = list(
+            self.model.embed(chunks)
         )
 
         print("\n" + "=" * 60)
         print("🧠 EMBEDDINGS GENERATED")
         print("=" * 60)
         print(f"Chunks : {len(chunks)}")
-        print(f"Embedding Dimension : {embeddings.shape[1]}")
+        print(f"Embedding Dimension : {len(embeddings[0])}")
         print("=" * 60 + "\n")
 
         return embeddings

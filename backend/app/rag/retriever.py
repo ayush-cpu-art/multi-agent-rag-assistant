@@ -1,5 +1,6 @@
 import re
 
+from fastembed import TextEmbedding
 from qdrant_client.models import (
     Filter,
     FieldCondition,
@@ -13,14 +14,12 @@ class Retriever:
 
     def __init__(self):
 
-        from sentence_transformers import SentenceTransformer
-
         self.collection_name = "documents"
 
         self.client = client
 
-        self.model = SentenceTransformer(
-            "sentence-transformers/all-MiniLM-L6-v2"
+        self.model = TextEmbedding(
+            model_name="BAAI/bge-small-en-v1.5"
         )
 
     def extract_document_ids(self, query: str):
@@ -34,7 +33,6 @@ class Retriever:
         document_ids = []
 
         for number in matches:
-
             document_ids.append(
                 f"assignment-{number}"
             )
@@ -48,10 +46,9 @@ class Retriever:
         print("=" * 60)
         print("Query :", query)
 
-        query_vector = self.model.encode(
-            query,
-            normalize_embeddings=True
-        ).tolist()
+        query_vector = list(
+            self.model.embed([query])
+        )[0].tolist()
 
         document_ids = self.extract_document_ids(query)
 
