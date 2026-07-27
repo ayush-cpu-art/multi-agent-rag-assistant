@@ -8,42 +8,7 @@ export default defineConfig({
     ],
 
     build: {
-
-        chunkSizeWarningLimit: 1000,
-
-        rollupOptions: {
-
-            output: {
-
-                manualChunks: {
-
-                    react: [
-
-                        "react",
-                        "react-dom"
-
-                    ],
-
-                    markdown: [
-
-                        "react-markdown",
-                        "remark-gfm",
-                        "react-syntax-highlighter"
-
-                    ],
-
-                    pdf: [
-
-                        "jspdf"
-
-                    ]
-
-                }
-
-            }
-
-        }
-
+        chunkSizeWarningLimit: 1000
     }
 
 });
