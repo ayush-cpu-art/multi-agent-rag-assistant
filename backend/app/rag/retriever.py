@@ -1,6 +1,5 @@
 import re
 
-from sentence_transformers import SentenceTransformer
 from qdrant_client.models import (
     Filter,
     FieldCondition,
@@ -13,6 +12,8 @@ from app.core.qdrant import client
 class Retriever:
 
     def __init__(self):
+
+        from sentence_transformers import SentenceTransformer
 
         self.collection_name = "documents"
 
